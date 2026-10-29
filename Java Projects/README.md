@@ -14,6 +14,4 @@ I used the Java language to write this software.
 
 # Useful Websites
 
-{Make a list of websites that you found helpful in this project}
-
 - [Dev.java] https://dev.java/learn/first-steps/first-java-code/getting-started/
