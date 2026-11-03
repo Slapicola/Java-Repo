@@ -23,6 +23,9 @@ public class Main {
             ArrayList<Movie> Movies = gson.fromJson(json, new TypeToken<ArrayList<Movie>>() {
             }.getType());
 
+            //Empty watch hitsory Array
+            ArrayList<Movie> watchHistory = new ArrayList<Movie>();
+
             //------Menu-----------
             System.out.println("Movie Search Menu");
 
@@ -30,9 +33,10 @@ public class Main {
             System.out.println("2. Search by genre");
             System.out.println("3. Search by actor");
             System.out.println("4. Recommend by Favorite Movie");
+            System.out.println("5. Add Movies to watch list");
 
             //Get user input
-            var userChoice = IO.readln("Please enter choice (ie: 1, 2, 3, 4): ");
+            var userChoice = IO.readln("Please enter choice (ie: 1, 2, 3, 4, 5): ");
             
             if (userChoice.equals("1")) {
                 var userSearch = IO.readln("Please enter a movie title: ");
@@ -43,9 +47,15 @@ public class Main {
             } else if (userChoice.equals("3")){
                 var userSearch = IO.readln("Please enter an actor name: ");
                 searchByActor(Movies, userSearch);
-            } else {
+            } else if (userChoice.equals("4")){
                 var userSearch = IO.readln("What is your favorite movie? ");
                 recommendByFavorite(Movies, userSearch);
+            } else {
+                populateWatchHistory(Movies, watchHistory);
+                // for (Movie movie : watchHistory) {
+                //     System.out.println(movie.getTitle());
+                // }
+                recommendByWatchList(Movies, watchHistory);
             }
 
 
@@ -122,5 +132,63 @@ public class Main {
         if (!foundMovie) {
             System.out.println("Movie not found.");
         }
+    }
+
+    static void populateWatchHistory(ArrayList<Movie> movieList, ArrayList<Movie> watchHistory) {
+        System.out.println("Enter 3 watched movies: ");
+        var askForMovies1 = IO.readln("Movie 1: ");
+        var askForMovies2 = IO.readln("Movie 2: ");
+        var askForMovies3 = IO.readln("Movie 3: ");
+
+        for (Movie movie : movieList) {
+            if (movie.getTitle().equals(askForMovies1)) {
+                watchHistory.add(movie);
+            } 
+            if (movie.getTitle().equals(askForMovies2)) {
+                watchHistory.add(movie);
+            }
+            if (movie.getTitle().equals(askForMovies3)) {
+                watchHistory.add(movie);
+            }
+        }
+    }
+
+    static void recommendByWatchList(ArrayList<Movie> movieData, ArrayList<Movie> watchHistory) {
+        //Declare genre counters
+        int scienceFictionCount = 0;
+        int crimeCount = 0; 
+        int fantasyCount = 0;
+        int highestCount = 0;
+
+        String favoriteGenre = "";
+
+        for (int i = 0; i < watchHistory.size(); i++) {
+            Movie currentMovie = watchHistory.get(i);
+            System.out.println(currentMovie.getGenre());
+            if (currentMovie.getGenre().equals("Science Fiction")) {
+                scienceFictionCount++;
+            } else if (currentMovie.getGenre().equals("Crime")) {
+                crimeCount++;
+            } else if (currentMovie.getGenre().equals("Fantasy")) {
+                fantasyCount++;
+            }
+        }
+
+        //Check what genre is seen the most in the watchlist
+        if (scienceFictionCount > highestCount) {
+            highestCount = scienceFictionCount;
+            favoriteGenre = "Science Fiction";
+        } else if (crimeCount > highestCount) {
+            highestCount = crimeCount;
+            favoriteGenre = "Crime";
+        } else if (fantasyCount > highestCount) {
+            highestCount = fantasyCount;
+            favoriteGenre = "Fantasy";
+        }
+        //testing counters
+        System.out.println("Science Fiction: " + scienceFictionCount);
+        System.out.println("Crime: " + crimeCount);
+        System.out.println("Fantasy: " + fantasyCount);
+        System.out.println("Favorite Genre: " + favoriteGenre);
     }
     }
