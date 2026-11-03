@@ -2,12 +2,7 @@
   {
     "title": "The Shawshank Redemption",
     "genre": "Drama",
-    "actors": [
-      "Tim Robbins",
-      "Morgan Freeman",
-      "Bob Gunton",
-      "William Sadler"
-    ]
+    "actors": ["Tim Robbins", "Morgan Freeman", "Bob Gunton", "William Sadler"]
   },
   {
     "title": "The Dark Knight",
@@ -42,12 +37,7 @@
   {
     "title": "Forrest Gump",
     "genre": "Drama",
-    "actors": [
-      "Tom Hanks",
-      "Robin Wright",
-      "Gary Sinise",
-      "Sally Field"
-    ]
+    "actors": ["Tom Hanks", "Robin Wright", "Gary Sinise", "Sally Field"]
   },
   {
     "title": "The Matrix",
@@ -62,12 +52,7 @@
   {
     "title": "Titanic",
     "genre": "Romance",
-    "actors": [
-      "Leonardo DiCaprio",
-      "Kate Winslet",
-      "Billy Zane",
-      "Kathy Bates"
-    ]
+    "actors": ["Leonardo DiCaprio", "Kate Winslet", "Billy Zane", "Kathy Bates"]
   },
   {
     "title": "Jurassic Park",

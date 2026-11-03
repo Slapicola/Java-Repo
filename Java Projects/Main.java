@@ -29,9 +29,10 @@ public class Main {
             System.out.println("1. Search by title");
             System.out.println("2. Search by genre");
             System.out.println("3. Search by actor");
+            System.out.println("4. Recommend by Favorite Movie");
 
             //Get user input
-            var userChoice = IO.readln("Please enter choice (ie: 1, 2, 3): ");
+            var userChoice = IO.readln("Please enter choice (ie: 1, 2, 3, 4): ");
             
             if (userChoice.equals("1")) {
                 var userSearch = IO.readln("Please enter a movie title: ");
@@ -39,9 +40,12 @@ public class Main {
             } else if (userChoice.equals("2")) {
                 var userSearch = IO.readln("Please enter a movie genre: ");
                 searchByGenre(Movies, userSearch);
-            } else {
+            } else if (userChoice.equals("3")){
                 var userSearch = IO.readln("Please enter an actor name: ");
                 searchByActor(Movies, userSearch);
+            } else {
+                var userSearch = IO.readln("What is your favorite movie? ");
+                recommendByFavorite(Movies, userSearch);
             }
 
 
@@ -84,17 +88,39 @@ public class Main {
         }
     }
     
-     static void searchByTitle(ArrayList<Movie> movieList, String title) {
+    static void searchByTitle(ArrayList<Movie> movieList, String title) {
         for (int i = 0; i < movieList.size(); i++) {
-                Movie currentMovie = movieList.get(i);
-                if (currentMovie.getTitle().equals(title)) {
-                    System.out.println("Title: " + currentMovie.getTitle());
-                    System.out.println("Genre: " + currentMovie.getGenre());
-                    String[] actors = currentMovie.getActorsList();
-                    for (int j = 0; j < actors.length; j++) {
-                        System.out.println(actors[j]);
-            }
-        }
+            Movie currentMovie = movieList.get(i);
+            if (currentMovie.getTitle().equals(title)) {
+                System.out.println("Title: " + currentMovie.getTitle());
+                System.out.println("Genre: " + currentMovie.getGenre());
+                String[] actors = currentMovie.getActorsList();
+                for (int j = 0; j < actors.length; j++) {
+                    System.out.println(actors[j]);
                 }
             }
+        }
+    }
+            
+    static void recommendByFavorite(ArrayList<Movie> movieList, String title) {
+        boolean foundMovie = false;
+        for (int i = 0; i < movieList.size(); i++) {
+            Movie currentMovie = movieList.get(i);
+            if (currentMovie.getTitle().equalsIgnoreCase(title)) {
+                String genre = currentMovie.getGenre();
+                for (int j = 0; j < movieList.size(); j++) {
+                    Movie recommendedMovie = movieList.get(j);
+                    if (genre.equals(recommendedMovie.getGenre())
+                            && !recommendedMovie.getTitle().equalsIgnoreCase(title)) {
+                        foundMovie = true;
+                        System.out
+                                .println("Recommended because you liked " + title + ": " + recommendedMovie.getTitle());
+                    }
+                }
+            }
+        }
+        if (!foundMovie) {
+            System.out.println("Movie not found.");
+        }
+    }
     }
