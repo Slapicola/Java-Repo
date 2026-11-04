@@ -83,5 +83,56 @@
       "Hailee Steinfeld",
       "Mahershala Ali"
     ]
+  },
+  {
+    "title": "Interstellar",
+    "genre": "Science Fiction",
+    "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Jessica Chastain",
+      "Michael Caine"
+    ]
+  },
+  {
+    "title": "The Godfather",
+    "genre": "Crime",
+    "actors": ["Marlon Brando", "Al Pacino", "James Caan", "Robert Duvall"]
+  },
+  {
+    "title": "Harry Potter and the Sorcerer's Stone",
+    "genre": "Fantasy",
+    "actors": [
+      "Daniel Radcliffe",
+      "Emma Watson",
+      "Rupert Grint",
+      "Richard Harris"
+    ]
+  },
+  {
+    "title": "La La Land",
+    "genre": "Romance",
+    "actors": ["Ryan Gosling", "Emma Stone", "John Legend", "Rosemarie DeWitt"]
+  },
+  {
+    "title": "The Notebook",
+    "genre": "Romance",
+    "actors": [
+      "Ryan Gosling",
+      "Rachel McAdams",
+      "James Garner",
+      "Gena Rowlands"
+    ]
+  },
+  {
+    "title": "The Green Mile",
+    "genre": "Drama",
+    "actors": [
+      "Tom Hanks",
+      "Michael Clarke Duncan",
+      "David Morse",
+      "Bonnie Hunt"
+    ]
   }
+
 ]

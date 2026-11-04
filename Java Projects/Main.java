@@ -77,31 +77,43 @@ public class Main {
     
     //----------Function Declarations----------------
     static void searchByGenre(ArrayList<Movie> movieList, String genre) {
+        boolean foundGenre = false;
         for (int i = 0; i < movieList.size(); i++) {
             Movie currentMovie = movieList.get(i);
-            if (currentMovie.getGenre().equals(genre)) {
+            if (currentMovie.getGenre().equalsIgnoreCase(genre)) {
+                foundGenre = true;
                 System.out.println(currentMovie.getTitle());
             }
+        }
+        if (!foundGenre) {
+            System.out.println("There are no movies in that genre.");
         }
     }
     
     static void searchByActor(ArrayList<Movie> movieList, String actorName) {
+        boolean foundActor = false;
         for (int i = 0; i < movieList.size(); i++) {
             Movie currentMovie = movieList.get(i);
             String[] actors = currentMovie.getActorsList();
             for (int j = 0; j < actors.length; j++) {
-                if (actors[j].equals(actorName)) {
+                if (actors[j].equalsIgnoreCase(actorName)) {
+                    foundActor = true;
                     System.out.println(currentMovie.getTitle());
                 }
-                
+
             }
+        }
+        if (!foundActor) {
+            System.out.println("There are no movies with that actor.");
         }
     }
     
     static void searchByTitle(ArrayList<Movie> movieList, String title) {
+        boolean foundMovie = false;
         for (int i = 0; i < movieList.size(); i++) {
             Movie currentMovie = movieList.get(i);
-            if (currentMovie.getTitle().equals(title)) {
+            if (currentMovie.getTitle().equalsIgnoreCase(title)) {
+                foundMovie = true;
                 System.out.println("Title: " + currentMovie.getTitle());
                 System.out.println("Genre: " + currentMovie.getGenre());
                 String[] actors = currentMovie.getActorsList();
@@ -109,6 +121,9 @@ public class Main {
                     System.out.println(actors[j]);
                 }
             }
+        }
+        if (!foundMovie) {
+            System.out.println("That movie is not in the database.");
         }
     }
             
@@ -141,13 +156,13 @@ public class Main {
         var askForMovies3 = IO.readln("Movie 3: ");
 
         for (Movie movie : movieList) {
-            if (movie.getTitle().equals(askForMovies1)) {
+            if (movie.getTitle().equalsIgnoreCase(askForMovies1)) {
                 watchHistory.add(movie);
             } 
-            if (movie.getTitle().equals(askForMovies2)) {
+            if (movie.getTitle().equalsIgnoreCase(askForMovies2)) {
                 watchHistory.add(movie);
             }
-            if (movie.getTitle().equals(askForMovies3)) {
+            if (movie.getTitle().equalsIgnoreCase(askForMovies3)) {
                 watchHistory.add(movie);
             }
         }
@@ -185,10 +200,28 @@ public class Main {
             highestCount = fantasyCount;
             favoriteGenre = "Fantasy";
         }
+
         //testing counters
         System.out.println("Science Fiction: " + scienceFictionCount);
         System.out.println("Crime: " + crimeCount);
         System.out.println("Fantasy: " + fantasyCount);
         System.out.println("Favorite Genre: " + favoriteGenre);
+
+
+        //Loop through movieData
+        boolean watchedMovie = false;
+        for (Movie movie : movieData) {
+            if (movie.getGenre().equals(favoriteGenre)) {
+                watchedMovie = false;
+                for (Movie watched : watchHistory) {
+                    if (watched.equals(movie)) {
+                        watchedMovie = true;
+                    }
+                }
+                if (!watchedMovie) {
+                    System.out.println("From your watch history we recommend: " + movie.getTitle()); 
+                }
+            }
+        }
     }
     }
